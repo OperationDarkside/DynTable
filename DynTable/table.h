@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <functional>
 #include "Column.h"
 #include "Row.h"
 
@@ -25,6 +26,8 @@ namespace dyn {
 		row& new_row();
 		void remove_row(size_t i);
 		row& get_row(size_t i);
+
+		std::vector<row> find_rows(std::function<bool (row)> f);
 
 	private:
 		friend class row;

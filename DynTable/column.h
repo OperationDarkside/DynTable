@@ -18,6 +18,8 @@ namespace dyn {
 		std::vector<T> storage;
 
 		void add_value() override;
+		void remove_value(size_t i) override;
+
 		T& get_value(size_t i);
 		void set_value(T& val_, size_t i);
 	};
@@ -31,6 +33,11 @@ namespace dyn {
 	template<typename T>
 	inline void column<T>::add_value() {
 		this->storage.push_back(T());
+	}
+
+	template<typename T>
+	inline void column<T>::remove_value(size_t i) {
+		this->storage.erase(this->storage.begin() + i);
 	}
 
 	template<typename T>

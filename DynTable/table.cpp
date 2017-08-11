@@ -51,6 +51,10 @@ namespace dyn {
 			throw "remove_row: index out of range";
 		}
 
+		for(auto& c : columns) {
+			c.get()->remove_value(i);
+		}
+
 		this->rows.erase(this->rows.begin() + i);
 	}
 
@@ -60,6 +64,18 @@ namespace dyn {
 		}
 
 		return this->rows[i];
+	}
+
+	std::vector<row> table::find_rows(std::function<bool(row)> f) {
+		std::vector<row> res;
+
+		for(auto& r : this->rows) {
+			if(f(r)) {
+				res.push_back(r);
+			}
+		}
+
+		return res;
 	}
 
 	size_t table::get_col_index(const std::string _name) {

@@ -15,7 +15,7 @@ namespace dyn {
 		T& get_field(size_t i);
 
 		template<typename T>
-		void set_field(T val, size_t i);
+		void set_field(size_t i, T val);
 	private:
 		size_t pos = 0;
 		table* table_ref;
@@ -38,7 +38,7 @@ namespace dyn {
 	}
 
 	template<typename T>
-	inline void row::set_field(T val, size_t i) {
+	inline void row::set_field(size_t i, T val) {
 		if(i > (table_ref->columns.size() - 1)) {
 			throw "get_field: column index out of range";
 		}
