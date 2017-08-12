@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <array>
 #include <functional>
 #include "Column.h"
 #include "Row.h"
@@ -18,16 +19,27 @@ namespace dyn {
 		table(const std::string _name);
 		~table();
 
+		// Columns
 		template<typename T>
 		void add_column(const std::string& _name);
-		void remove_column(size_t pos);
+		void remove_column(size_t index);
 		void remove_column(const std::string& _name);
+		template<typename T>
+		column<T>& get_column(size_t index);
+		template<typename T>
+		column<T>& get_column(const std::string& _name);
 
+		// Rows
 		row& new_row();
-		void remove_row(size_t i);
-		row& get_row(size_t i);
+		// void add_row(row& r);
+		row& add_row();
+		void remove_row(size_t index);
+		void remove_row(row& r);
+		void remove_row(std::function<bool(row)> f);
+		void insert_row(size_t index, row& r);
+		row& get_row(size_t index);
 
-		std::vector<row> find_rows(std::function<bool (row)> f);
+		std::vector<row> find_rows(std::function<bool(row)> f);
 
 	private:
 		friend class row;
@@ -50,6 +62,14 @@ namespace dyn {
 		col.get()->set_name(name);
 
 		this->columns.push_back(std::move(col));
+	}
+	template<typename T>
+	inline column<T>& table::get_column(size_t index) {
+		return this->columns[index];
+	}
+	template<typename T>
+	inline column<T>& table::get_column(const std::string & _name) {
+		return this->columns[get_col_index(_name)];
 	}
 }
 #endif // !TABLE_H

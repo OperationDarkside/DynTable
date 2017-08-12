@@ -19,6 +19,7 @@ namespace dyn {
 
 		void add_value() override;
 		void remove_value(size_t i) override;
+		void insert_value(size_t i) override;
 
 		T& get_value(size_t i);
 		void set_value(T& val_, size_t i);
@@ -38,6 +39,11 @@ namespace dyn {
 	template<typename T>
 	inline void column<T>::remove_value(size_t i) {
 		this->storage.erase(this->storage.begin() + i);
+	}
+
+	template<typename T>
+	inline void column<T>::insert_value(size_t i) {
+		this->storage.insert(this->storage.begin() + i, T());
 	}
 
 	template<typename T>

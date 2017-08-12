@@ -16,8 +16,11 @@ namespace dyn {
 
 		template<typename T>
 		void set_field(size_t i, T val);
+
+		friend bool operator==(const row& row1, const row& row2);
 	private:
-		size_t pos = 0;
+		friend class table;
+		unsigned long long pos = 0;
 		table* table_ref;
 	};
 

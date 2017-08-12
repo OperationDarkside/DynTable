@@ -19,6 +19,7 @@ namespace dyn {
 
 		virtual void add_value() = 0;
 		virtual void remove_value(size_t i) = 0;
+		virtual void insert_value(size_t i) = 0;
 
 		std::string name;
 	};
