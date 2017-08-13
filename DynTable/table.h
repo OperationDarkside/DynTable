@@ -69,7 +69,14 @@ namespace dyn {
 	}
 	template<typename T>
 	inline column<T>& table::get_column(const std::string & _name) {
-		return this->columns[get_col_index(_name)];
+		column_base* col_base = this->columns[get_col_index(_name)].get();
+		column<T>* col = static_cast<column<T>*>(col_base);
+
+		if(col == nullptr) {
+			throw "get_column: Type mismatch!";
+		}
+
+		return col;
 	}
 }
 #endif // !TABLE_H
