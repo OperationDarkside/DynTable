@@ -27,6 +27,12 @@
     <ClInclude Include="column.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="column_collection.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="row_collection.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="table.cpp">
@@ -39,6 +45,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="row.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="column_collection.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="row_collection.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

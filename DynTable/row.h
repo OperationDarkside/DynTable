@@ -3,12 +3,12 @@
 #ifndef ROW_H
 #define ROW_H
 
-#include "table.h"
+#include "column_collection.h"
 
 namespace dyn {
 	class row {
 	public:
-		row(table* _table_ref, size_t _pos);
+		row(column_collection* _col_collect, size_t _pos);
 		~row();
 
 		template<typename T>
@@ -19,17 +19,17 @@ namespace dyn {
 
 		friend bool operator==(const row& row1, const row& row2);
 	private:
-		friend class table;
+		friend class row_collection;
 		unsigned long long pos = 0;
-		table* table_ref;
+		column_collection* col_collect;
 	};
 
 	template<typename T>
 	inline T & row::get_field(size_t i) {
-		if(i > (table_ref->columns.size() - 1)) {
+		if(i > (col_collect->column_storage.size() - 1)) {
 			throw "get_field: column index out of range";
 		}
-		column_base* colBase = table_ref->columns[i].get();
+		column_base* colBase = col_collect->column_storage[i].get();
 
 		column<T>* col = static_cast<column<T>*>(colBase);
 
@@ -42,10 +42,10 @@ namespace dyn {
 
 	template<typename T>
 	inline void row::set_field(size_t i, T val) {
-		if(i > (table_ref->columns.size() - 1)) {
+		if(i > (col_collect->column_storage.size() - 1)) {
 			throw "get_field: column index out of range";
 		}
-		column_base* colBase = table_ref->columns[i].get();
+		column_base* colBase = col_collect->column_storage[i].get();
 
 		column<T>* col = static_cast<column<T>*>(colBase);
 

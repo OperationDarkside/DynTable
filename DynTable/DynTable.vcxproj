@@ -110,12 +110,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="column_collection.h" />
+    <ClInclude Include="row_collection.h" />
     <ClInclude Include="table.h" />
     <ClInclude Include="column.h" />
     <ClInclude Include="column_base.h" />
     <ClInclude Include="row.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="column_collection.cpp" />
+    <ClCompile Include="row_collection.cpp" />
     <ClCompile Include="table.cpp" />
     <ClCompile Include="column_base.cpp" />
     <ClCompile Include="row.cpp" />

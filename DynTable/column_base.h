@@ -16,6 +16,7 @@ namespace dyn {
 	private:
 		friend class row;
 		friend class table;
+		friend class row_collection;
 
 		virtual void add_value() = 0;
 		virtual void remove_value(size_t i) = 0;
